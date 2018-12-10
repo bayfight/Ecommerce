@@ -1,0 +1,35 @@
+@media (min-width: 992px) {
+    #respon2{
+        margin-left:30px;
+    }
+    
+    #respon3{
+        margin-left:90px;
+    }
+    
+    #respon4{
+        margin-left:100px;
+    }
+    
+    #respon5{
+        margin-left:40px
+    }
+    }
+    
+    @media (min-width: 576px) and (max-width: 767.98px){
+        #respon2{
+            margin-left:0px;
+        }
+        
+        #respon3{
+            margin-left:0px;
+        }
+        
+        #respon4{
+            margin-left:0px;
+        }
+        
+        #respon5{
+            margin-left:0px;
+        }
+    }

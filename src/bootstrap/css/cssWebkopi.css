@@ -1,0 +1,92 @@
+#navTop{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-left: auto;
+}
+
+@media (min-width: 992px) {
+#respon2{
+    margin-left:30px;
+}
+
+#respon3{
+    margin-left:90px;
+}
+
+#respon4{
+    margin-left:100px;
+}
+
+#respon5{
+    margin-left:40px
+}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px){
+    #respon2{
+        margin-left:0px;
+    }
+    
+    #respon3{
+        margin-left:0px;
+    }
+    
+    #respon4{
+        margin-left:0px;
+    }
+    
+    #respon5{
+        margin-left:0px;
+    }
+}
+
+.pl{
+    padding-left: 110px;
+}
+
+.pr{
+    padding-left: 0px;
+}
+
+.bpkIcon{
+    height: 40px;
+    width: 40px;
+}
+
+.email{
+    margin-bottom:0px;  
+}
+
+.Pasword{
+    margin-bottom:0px;  
+}
+
+.carousel-inner .carousel-item img{
+    width: 100% !important;
+    height: 490px !important;
+}
+
+.caros{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.sizeContent img{
+    width: 300px;
+    height: 300px;
+}
+
+.bestSeller{
+    color: white;
+}
+
+.iconStore{
+    color: white;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.bgToko{
+    background-color: orange;
+}
