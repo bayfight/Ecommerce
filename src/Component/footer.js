@@ -6,18 +6,18 @@ class Footer extends Component {
         return (
 <div>
 <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row text-white">
-                    <div class="col-lg-12 col-sm-12">
-                        <p class="text-white text-center">Folow Me On Social Media</p>
+        <div className="footer-top">
+            <div className="container">
+                <div className="row text-white">
+                    <div className="col-lg-12 col-sm-12">
+                        <p className="text-white text-center">Folow Me On Social Media</p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="text-white col-lg-12 col-md-12 col-sm-12">
-                        <div class="pull-left text-center">
+            <div className="footer-bottom">
+                <div className="container">
+                    <div className="text-white col-lg-12 col-md-12 col-sm-12">
+                        <div className="pull-left text-center">
                             &copy; 2018. All rights reserved
                         </div>
                     </div>

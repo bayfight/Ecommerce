@@ -1,125 +1,135 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import ButtonSign from './button-sign';
+import Cart from './cart';
+import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 
 
 class Navbar extends Component {
-  render() {
-    return (
-    <div class="container-fluid bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9"><i class="fas fa-shopping-cart fa-2x"></i></div>
-                <div class="col-lg-3 pl">
-                    <div class="dropdown">
-                        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sing In | Sing Up
+    constructor() {
+        super()
+        this.state = {
+            show: false,
+            isLogin: false
+        }
+    }
+
+    klik = ()=>{
+        this.setState({
+            show: true
+        })
+    }
+
+
+    render() {
+        // let nama_user = JSON.parse(localStorage.getItem('user'))
+        // console.log('nama_user', nama_user);
+        return (
+            <React.Fragment>
+                
+            <nav className="container-fluid bg-dark text-white">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-10 col-md-10 col-sm-10">
+                        {this.props.id ?
+                            (<Cart />):
+                            (<i className="fas fa-shopping-cart fa-2x text-white" onClick={this.klik} >
+                            {
+                                    this.state.show ?
+                                        <SweetAlert
+                                            show={this.state.show}
+                                            title="alert"
+                                            text="Login Dulu"
+                                            onConfirm={() => {
+
+                                                this.setState({
+                                                    show: false,
+                                                    mesage: ""
+                                                })
+                                            }}
+                                        /> : ''
+                                }
+                            </i>)}
+
+                        </div>
+                        <ButtonSign />
+                    </div>
+                </div>
+
+
+
+                <div className="container 1">
+                    <div className="navbar col-lg-12 navbar-expand-lg navbar-light bg-white">
+                        <a className="pl-2 text-dark" href="/" ><img alt="sssds" className="bpkIcon" src="images/BPK.jpeg" /></a><p className="text-dark pt-3">Bogor Punya Kopi</p>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <p class="dropdown-item mt-4">Your Email</p>
-                            <input class="email ml-4 mr-4" placeholder="Enter Your Email"/>
-                            <p class="dropdown-item mt-4">Your Password</p>
-                            <input class="Pasword ml-4 mr-4" placeholder="Enter Your Password"/>
-                            <button class="btn btn-warning mt-2 ml-4">Masuk</button> <button class="btn btn-warning mt-2 ml-4"><a
-                                    href="#">Sing
-                                    Up</a></button>
+                    </div>
+                </div>
+
+
+                <div className="container">
+                    <div className="navbar navbar-expand-lg navbar-light">
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div className="row">
+                                <div className="col-lg-8 col-sm-12">
+                                    <div className="row">
+                                        <div className="col-lg-1 col-sm-12">
+                                            <div className="dropdown mt-1">
+                                                <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Coffe
+                                                </button>
+                                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                    <Link className="dropdown-item" to="/coffe">Roasted Bean</Link>
+                                                    <Link className="dropdown-item" to='/coffeGreenbean'>Green Bean</Link>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="respon2" className="col-lg-1 col-sm-12">
+                                            <div className="dropdown mt-1 pl-1 ">
+                                                <button className="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Coffe Equipment
+                    </button>
+                                                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <Link className="dropdown-item" to="/grinder">Manual Brew</Link>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div className="col-lg-4 col-sm-12">
+                                    <form id="respon5" className="form-inline mt-1 pl-5">
+                                        <input className="form-control mr-sm-2 " type="search" placeholder="Cari kopi atau mesin...."
+                                            aria-label="Search" />
+                                        <button className="btn btn-outline-success my-sm-0 " type="submit">Search</button>
+                                    </form>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <a class="navbar-brand pl-2" href="B:\Purwadhika\projectEcomerce\index.html"><img class="bpkIcon" src="images/BPK.jpeg"/>Bogor Punya Kopi</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                </nav>         
-        </div>
-
-        
-        <div class="container">
-          <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="row">
-                <div class="col-lg-8 col-sm-12">
-                    <div class="row">
-                <div class="col-lg-1 col-sm-12">
-                <div class="dropdown mt-2">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Coffee
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Green Bean</a>
-                        <a class="dropdown-item" href="#">Roasted Bean</a>
-                        <a class="dropdown-item" href="#">Ground Coffee</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="respon2" class="col-lg-1 col-sm-12">
-                <div class="dropdown mt-2">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Brewer Manual
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">v60</a>
-                        <a class="dropdown-item" href="#">Aero Press</a>
-                        <a class="dropdown-item" href="#">Simphony</a>
-                        <a class="dropdown-item" href="#">Grinder</a>
-                    </div>
-                </div>
-            </div>
-
-                <div id="respon3" class="col-lg-1 col-sm-12">
-                <div class="dropdown mt-2">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Esspresso Macine
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Single</a>
-                        <a class="dropdown-item" href="#">Double</a>
-                    </div>
-                </div>
-            </div>
-
-                <div id="respon4" class="col-lg-1 col-sm-12">
-                <div class="dropdown pl-2 mt-2">
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Roasted Macine
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Lokal</a>
-                        <a class="dropdown-item" href="#">Internasional</a>
-                    </div>
-                </div>
-            </div>
-
-            </div>
-        </div>
-
-            <div class="col-lg-4 col-sm-12">
-                <form id="respon5" class="form-inline mt-2">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Cari kopi atau mesin...."
-                            aria-label="Search"/>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-                </div>
-                </div>
             </nav>
-        </div>
+                
+            </React.Fragment>
+        );
+    }
     
-
-    </div>
-    );
-  }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    id: state.user.id,
+});
+
+export default connect(mapStateToProps)(Navbar);

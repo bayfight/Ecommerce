@@ -4,6 +4,16 @@
     padding-left: auto;
 }
 
+.navShrink{
+    background-color: pink !important;
+    transition: .5s;
+    
+}
+
+.mt-10{
+    margin-top: 170px;
+}
+
 @media (min-width: 992px) {
 #respon2{
     margin-left:30px;

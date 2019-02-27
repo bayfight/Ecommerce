@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import Navbar from './Component/navbar';
-import CarouselHome from './Component/carouselHome';
-import BestSellerHome from './Component/bestSellerHome';
-import StoreHome from './Component/storeHome';
 import Footer from './Component/footer';
+import Routes from './route/routes';
+
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar/>
-        <CarouselHome/>
-        <BestSellerHome/>
-        <StoreHome/>
-        <Footer/>
-      </div>
-    );
+      <React.Fragment>
+        <Navbar />
+        <Routes />
+        <Footer />
+      </React.Fragment>
+    )
   }
 }
 
