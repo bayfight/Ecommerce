@@ -3,6 +3,7 @@ import './detailCategory.css';
 import Breadcrumb from '../breadcumb';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 
 class DetailCategoryGreenbean extends Component {
     constructor(props){
@@ -10,6 +11,7 @@ class DetailCategoryGreenbean extends Component {
         this.state = {
             detailCategory : "",
             quantity : 1,
+            show : false
         }
     }
     
@@ -63,6 +65,11 @@ class DetailCategoryGreenbean extends Component {
             // console.log(id_user)
             const url = 'http://localhost:3020/addToCart'
             Axios.post(url, data)
+            .then(() => {
+                this.setState({
+                    show: true
+                })
+            })
             .catch(err => {
                 console.log(err)
             })
@@ -70,8 +77,8 @@ class DetailCategoryGreenbean extends Component {
 
 
     render() {
-        console.log(this.state.detailCategory.nama_gambar)
-        console.log(this.state.detailCategory[0])
+        // console.log(this.state.detailCategory.nama_gambar)
+        // console.log(this.state.detailCategory[0])
         
         return (
             <React.Fragment>
@@ -97,14 +104,36 @@ class DetailCategoryGreenbean extends Component {
                                     
                                     <hr/>
                                         <div className="product-price">Rp. {this.state.detailCategory.price}</div>
-                                        <div className="product-stock">Jumlah yang ingin di beli : <button type="button" class="btn btn-light" onClick={this.kurang}>-</button> {this.state.quantity} <button type="button" class="btn btn-light" onClick={this.tambah}>+</button></div>
+                                        <div className="product-stock">Jumlah yang ingin di beli : 
+                                        <button type="button" class="btn btn-light" onClick={this.kurang}>-</button> 
+                                        {this.state.quantity} 
+                                        <button type="button" class="btn btn-light" onClick={this.tambah}>+</button>
+                                        </div>
                                         <div className="product-stock">Jumlah stock : {this.state.detailCategory.quantity} </div>
                                         <hr/>
                                             <div className="btn-group cart">
                                                 <button onClick={this.addCart} type="button" className="btn btn-success">
                                                     Add to cart
-						</button>
+						                        </button>
                                             </div>
+                                            {
+                                    this.state.show ?
+                                        <SweetAlert
+                                            show={this.state.show}
+                                            title="alert"
+                                            text="berhasil di masukan ke keranjang"
+                                            onConfirm={() => {
+
+                                                this.setState({
+                                                    show: false,
+                                                    mesage: ""
+                                                })
+                                                    window.location.href = `/coffeGreenbean/detailCategoriGR/${this.props.match.params.id}`
+                                                
+                                            }
+                                            }
+                                        /> : ''
+                                    }
                                             
 				</div>
 			</div>

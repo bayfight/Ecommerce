@@ -3,6 +3,7 @@ import './detailCategory.css';
 import Breadcrumb from '../breadcrumb';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 
 class DetailCategoryGrinder extends Component {
     constructor(props){
@@ -64,14 +65,19 @@ class DetailCategoryGrinder extends Component {
         // console.log(id_user)
         const url = 'http://localhost:3020/addToCart'
         Axios.post(url, data)
+        .then(() => {
+            this.setState({
+                show: true
+            })
+        })
         .catch(err => {
             console.log(err)
         })
     }
 
     render() {
-        console.log(this.state.detailCategory)
-        console.log(this.state.detailCategory[0])
+        // console.log(this.state.detailCategory)
+        // console.log(this.state.detailCategory[0])
         
         return (
             <React.Fragment>
@@ -105,11 +111,24 @@ class DetailCategoryGrinder extends Component {
                                                     Add to cart
 						</button>
                                             </div>
-                                            <div className="btn-group wishlist">
-                                                <button type="button" className="btn btn-danger">
-                                                    Add to wishlist
-						</button>
-                                            </div>
+                                            {
+                                    this.state.show ?
+                                        <SweetAlert
+                                            show={this.state.show}
+                                            title="alert"
+                                            text="berhasil di masukan ke keranjang"
+                                            onConfirm={() => {
+
+                                                this.setState({
+                                                    show: false,
+                                                    mesage: ""
+                                                })
+                                                    window.location.href = `/grinder/detailGrinder/${this.props.match.params.id}`
+                                                
+                                            }
+                                            }
+                                        /> : ''
+                                    }
 				</div>
 			</div>
                                 </div>

@@ -115,10 +115,10 @@ class Login extends Component {
                                 <form className="form paddingleft pb-4" onSubmit={(e) => { e.preventDefault() }}>
                                     <input type="text" id="email" name="email" className="form-control input-lg" onChange={this.change} placeholder="Your Email" />
                                     <input type="password" id="pasword" name="pasword" className="form-control input-lg" onChange={this.change1} placeholder="pasword" />
-                                    <button type="submit" className="btn btn-lg btn-primary btn-block signup-btn" onClick={this.input}>
+                                    <button id="button" type="submit" className="btn btn-lg btn-primary btn-block signup-btn" onClick={this.input}>
                                         {this.props.isLoading ? 'Is Loading' :'Login my account'}
                                     </button>
-                                    <Link to={`/signUp`}><button className="btn btn-lg btn-primary btn-block signup-btn mt-1">Signup Now</button></Link>
+                                    <Link to={`/signUp`}><button id="button" className="btn btn-lg btn-primary btn-block signup-btn mt-1">Signup Now</button></Link>
                                 </form>
                             </div>
                         </div>

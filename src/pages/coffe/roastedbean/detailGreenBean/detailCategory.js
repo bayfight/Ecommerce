@@ -3,13 +3,15 @@ import './detailCategory.css';
 import Breadcrumb from '../breadcrumb';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import SweetAlert from 'sweetalert2-react';
 
 class DetailCategory extends Component {
     constructor(props){
         super(props)
         this.state = {
             detailCategory : "",
-            quantity : 1
+            quantity : 1,
+            show : false
         }
     }
     
@@ -63,13 +65,18 @@ class DetailCategory extends Component {
         // console.log(id_user)
         const url = 'http://localhost:3020/addToCart'
         Axios.post(url, data)
+        .then(() => {
+            this.setState({
+                show: true
+            })
+        })
         .catch(err => {
             console.log(err)
         })
     }
 
     render() {
-        console.log(this.state.detailCategory)
+        // console.log(this.state.detailCategory)
         // console.log(this.state.detailCategory[0])
         
         return (
@@ -104,6 +111,24 @@ class DetailCategory extends Component {
                                                     Add to cart
 						</button>
                                             </div>
+                                            {
+                                    this.state.show ?
+                                        <SweetAlert
+                                            show={this.state.show}
+                                            title="alert"
+                                            text="berhasil di masukan ke keranjang"
+                                            onConfirm={() => {
+
+                                                this.setState({
+                                                    show: false,
+                                                    mesage: ""
+                                                })
+                                                    window.location.href = `/coffe/detailCategori/${this.props.match.params.id}`
+                                                
+                                            }
+                                            }
+                                        /> : ''
+                                    }
                     
 				</div>
 			</div>

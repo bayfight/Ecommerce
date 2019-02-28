@@ -43,7 +43,7 @@ class HistoryTransaksi extends Component {
                                             </tbody>
                                         </table>
 
-                                        <Link to="/"><button type="submit" className="btn btn-warning">Kembali Belanja</button></Link>
+                                        <Link to="/"><button className="btn btn-warning">Kembali Belanja</button></Link>
 
 
                                     </div>

@@ -26,7 +26,6 @@ class ButtonMasuk extends Component {
                     {this.props.nama_depan} {this.props.nama_belakang}
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <i className="dropdown-item" >profil</i>
                     <i className="dropdown-item" onClick={this.logout} >log Out</i>
                     {
                                     this.state.show ?

@@ -108,13 +108,13 @@ class Navbar extends Component {
                                 </div>
 
 
-                                <div className="col-lg-4 col-sm-12">
+                                {/* <div className="col-lg-4 col-sm-12">
                                     <form id="respon5" className="form-inline mt-1 pl-5">
                                         <input className="form-control mr-sm-2 " type="search" placeholder="Cari kopi atau mesin...."
                                             aria-label="Search" />
                                         <button className="btn btn-outline-success my-sm-0 " type="submit">Search</button>
                                     </form>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>

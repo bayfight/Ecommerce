@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 
@@ -8,10 +7,11 @@ class cart extends Component {
         super()
         this.state = {
             kumpulData: {},
-            Alamat : "",
+            Alamat: "",
             Atas_nama: "",
-            Nomor_Telpon : "",
-            Total : ""
+            Nomor_Telpon: "",
+            Total: "",
+            idCart: []
         }
     }
 
@@ -20,79 +20,112 @@ class cart extends Component {
         Axios.get(url)
             .then((Ambil) => {
                 this.setState({
-                    kumpulData: Ambil.data,  
+                    kumpulData: Ambil.data,
                 })
             })
     }
 
-    tambah = ()=>{
+    // tambah = () => {
+    //     const { kumpulData, quantity } = this.state;
+    //     if (kumpulData.quantity > quantity) {
+    //         this.setState({
+    //             quantity: quantity + 1
+    //         })
+    //     } else {
+    //         alert('Out of Stock');
+    //     }
 
-    }
+    // }
 
-    kurang = ()=>{
+
+
+    // kurang = () => {
+
+    // }
+
+    // delete = () => {
+    //     let url = `http://localhost:3020/delete-cart`
+    //     Axios.delete(url)
+    //         .then((res) => {
+    //             console.log(res)
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
+
+    cekOutPesanan = () => {
         
-    }
-
-    delete = ()=>{
-        let url = `http://localhost:3020/delete-cart`
-        Axios.delete(url)
-        .then((res)=>{
-            console.log(res)
+        const { kumpulData } = this.state;
+        console.log('kumpulData', kumpulData)
+        let arr = [];
+        kumpulData && kumpulData.data.map(kump => {
+            arr.push(kump.id)
         })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
-    
-
-    render() {
-        let cekOutPesanan = () =>{
-            let dataKirim = {
-                idInvoice : 1,
-                Alamat : this.state.Alamat,
-                Name : this.state.Atas_nama,
-                Phone : this.state.Nomor_Telpon,
-                Total : this.state.kumpulData.total
-            }
+        console.log('arr', arr);
+        let dataKirim = {
+            id_user: this.props.id,
+            Alamat: this.state.Alamat,
+            Name: this.state.Atas_nama,
+            Phone: this.state.Nomor_Telpon,
+            Total: this.state.kumpulData.total,
+            idCart: arr,
+        }
+        console.log("idcart",dataKirim.idCart)
+        console.log(dataKirim.idCart)
         let url = `http://localhost:3020/addToInvoice`
-        Axios.post(url, dataKirim,)
-        .then((result)=>{
-            console.log(result)
+        Axios.post(url, dataKirim, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .catch((err) => {
-            console.log(err)
-        })
+            .then((result) => {
+                console.log(result)
+                // if(result.data.invoice !== '') {
+                    window.location.href = `/cart/invoice/${result.data.invoice}`
+                // }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
-        }
-    
-        let change = (e) => {
-            this.setState({
-                Alamat: e.target.value,
-            })
-        }
-    
-        let change2 = (e) => {
-            this.setState({
-                Atas_nama: e.target.value,
-            })
-        }
-    
-        let change3 = (e) => {
-            this.setState({
-                Nomor_Telpon: e.target.value,
-            })
-        }
+
+     change = (e) => {
+        this.setState({
+            Alamat: e.target.value,
+        })
+    }
+
+     change2 = (e) => {
+        this.setState({
+            Atas_nama: e.target.value,
+        })
+    }
+
+     change3 = (e) => {
+        this.setState({
+            Nomor_Telpon: e.target.value,
+        })
+    }
+    render() {
+
+        
 
         const { kumpulData } = this.state;
         let list = kumpulData && kumpulData.data && kumpulData.data.length > 0 && kumpulData.data.map((val, i) => {
             return (
                 <tr key={i}>
-                    <th scope="row">{i+1}</th>
+                    <th scope="row">{i + 1}</th>
                     <td>{val.product_name}</td>
-                    <td>{val.quantity}</td>
+                    <td>
+                        {/* <button type="button" class="btn btn-light" onClick={this.kurang}>-</button> */}
+                        {val.quantity}
+                        {/* <button type="button" class="btn btn-light" onClick={this.tambah}>+</button> */}
+                    </td>
                     <td>{val.nama_gambar}</td>
                     <td>{val.total}</td>
-                    <td><button type="submit" className="fas fa-trash" onClick={this.delete}></button></td>
+                    {/* <td><button type="submit" className="fas fa-trash" onClick={this.delete}></button></td> */}
                 </tr>
             )
         })
@@ -114,11 +147,11 @@ class cart extends Component {
                             <div className="container">
                                 <div className="form-group">
                                     <label >Masukan Alamat Tujuan</label>
-                                    <textarea type="text" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Alamat" onChange={change} />
+                                    <textarea type="text" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Alamat" onChange={this.change} />
                                     <label>Atas Nama</label>
-                                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Nama" onChange={change2} />
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Nama" onChange={this.change2} />
                                     <label>Nomer Telpon</label>
-                                    <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Nomer Telpon" onChange={change3} />
+                                    <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Masukan Nomer Telpon" onChange={this.change3} />
                                 </div>
                                 <div className="card">
                                     <div className="card-body">
@@ -140,12 +173,12 @@ class cart extends Component {
 
                                             </tbody>
                                         </table>
-                                        
+
                                         <h1>Jumlah Harga : {this.state.kumpulData.total}</h1>
-                                        
-                                        <Link to="/cart/invoice">
-                                        <button type="submit" className="btn btn-warning">Cek out Pesanan</button>
-                                        </Link>
+
+                                        {/* <Link to="/cart/invoice"> */}
+                                        <button type="submit" className="btn btn-warning" onClick={this.cekOutPesanan}>Cek out Pesanan</button>
+                                        {/* </Link> */}
 
 
                                     </div>
@@ -161,9 +194,7 @@ class cart extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    nama_depan: state.user.nama_depan,
-    nama_belakang : state.user.nama_belakang,
     id: state.user.id,
 });
 
-export default connect(mapStateToProps) (cart);
+export default connect(mapStateToProps)(cart);
